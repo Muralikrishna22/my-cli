@@ -13,6 +13,11 @@
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
+    "chalk": "^5.2.0",
+    "clear": "^0.1.0",
+    "figlet": "^1.6.0",
+    "inquirer": "^9.2.2",
+    "ora": "^6.3.0",
     "react": "^18.2.0",
     "rimraf": "^5.0.0"
   },
