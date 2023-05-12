@@ -17,7 +17,7 @@ const projectName = process.argv[2];
 let currentPath = process.cwd();
 currentPath = currentPath.replace(/(\s+)/g, '\\$1');
 const projectPath = path.join(currentPath, projectName);
-const git_repo = "https://github.com/Muralikrishna22/my-cli.git";
+const git_repo = "https://github.com/Muralikrishna22/ssr-source.git";
 
 try {
     fs.mkdirSync(projectPath);
@@ -44,6 +44,34 @@ async function cleanup() {
     process.exit(1);
 }
 
+// questions to ask
+const questions = [
+    {
+        type: 'list',
+        name: 'store',
+        message: 'Do want store included:',
+        choices: ['Yes', 'No'],
+        default: 'Yes'
+    },
+    {
+        type: 'list',
+        name: 'SSR',
+        message: 'Do want SSR:',
+        choices: ['Yes', 'No'],
+        default: 'Yes'
+    },
+    // {
+    //     type: 'input',
+    //     name: 'additionalInput1',
+    //     message: 'Enter additional input 1:'
+    //   },
+    //   {
+    //     type: 'input',
+    //     name: 'additionalInput2',
+    //     message: 'Enter additional input 2:'
+    //   }
+];
+
 
 async function main() {
     try {
@@ -52,13 +80,17 @@ async function main() {
         const ora = await import('ora');
         const inquirer = await import('inquirer');
         console.log(chalk.default.blue(figlet.textSync('Careers360 CLI', { horizontalLayout: 'full' })));
-        // const setupParameters = await inquirer?.prompt([
-        //     // your setup questions here
-        // ]);
+        try {
+            const setupParameters = await inquirer.default.prompt(questions);
+        } catch (error) {
+            console.log(error)
+        }
+
         console.log(chalk.default.blue("\n\nInitializing Project...!!!!\n\n"));
 
         const spinner = ora.default('Installing dependencies...').start();
         spinner.start()
+        execSync(`git clone ${git_repo} ${projectPath}`);
         // execSync('npm config set @cnext:registry https://npm.careers360.com');
         execSync('npm i --legacy-peer-deps');
         spinner.succeed('Dependencies installed successfully!');
