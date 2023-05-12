@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = import('inquirer');
 
 module.exports = {
     setupQuestions: () => {

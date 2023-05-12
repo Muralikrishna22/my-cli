@@ -3,11 +3,11 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
+const chalk = import('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
-const inquirer = require('./questions');
-const ora = require('ora');
+const inquirer = import('./questions');
+const oraPromise = import('ora');
 
 if (process.argv.length < 3) {
     console.log('You have to provide a name to your app.');
@@ -36,7 +36,7 @@ try {
 async function main() {
     try {
         clear();
-        console.log(chalk.blueBright(figlet.textSync('Careers360 CLI', { horizontalLayout: 'full' })));
+        console.log(chalk.blue(figlet.textSync('Careers360 CLI', { horizontalLayout: 'full' })));
         const setupParameters = await inquirer.setupQuestions();
         console.log(chalk.greenBright("\n\nInitializing Project...!!!!\n\n"));
 
