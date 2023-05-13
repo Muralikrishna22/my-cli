@@ -1,5 +1,5 @@
 {
-  "name": "my-cli",
+  "name": "cnext-cli",
   "version": "1.0.0",
   "description": "practice purpose",
   "main": "index.js",
@@ -25,6 +25,6 @@
     "rimraf": "^5.0.0"
   },
   "bin": {
-    "my-cli": "./generate-app.js"
+    "@cnext-cli": "./generate-app.js"
   }
 }
