@@ -17,7 +17,7 @@ const projectName = process.argv[2];
 let currentPath = process.cwd();
 currentPath = currentPath.replace(/(\s+)/g, '\\$1');
 const projectPath = path.join(currentPath, projectName);
-const git_repo = "https://github.com/Muralikrishna22/ssr-source.git";
+// const git_repo = "https://github.com/Muralikrishna22/ssr-source.git";
 
 try {
     fs.mkdirSync(projectPath);
@@ -84,10 +84,10 @@ async function main() {
         const spinner = ora.default('Installing dependencies...').start();
         spinner.start()
         //  clone my boiler plate
-        execSync(`git clone ${git_repo} ${projectPath}`);
+        // execSync(`git clone ${git_repo} ${projectPath}`);
 
         // Remove the Git folder
-        execSync(`rm -rf ${path.join(projectPath, '.git')}`);
+        // execSync(`rm -rf ${path.join(projectPath, '.git')}`);
 
         // execSync('npm config set @cnext:registry https://npm.careers360.com');
         execSync('npm i --legacy-peer-deps', { cwd: projectPath });

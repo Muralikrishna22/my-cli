@@ -1,6 +1,6 @@
 {
   "name": "cnext-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "practice purpose",
   "main": "index.js",
   "scripts": {
