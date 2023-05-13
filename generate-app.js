@@ -48,13 +48,6 @@ async function cleanup() {
 const questions = [
     {
         type: 'list',
-        name: 'store',
-        message: 'Do want store included:',
-        choices: ['Yes', 'No'],
-        default: 'Yes'
-    },
-    {
-        type: 'list',
         name: 'SSR',
         message: 'Do want SSR:',
         choices: ['Yes', 'No'],
@@ -90,10 +83,22 @@ async function main() {
 
         const spinner = ora.default('Installing dependencies...').start();
         spinner.start()
+        //  clone my boiler plate
         execSync(`git clone ${git_repo} ${projectPath}`);
+
+        // Remove the Git folder
+        execSync(`rm -rf ${path.join(projectPath, '.git')}`);
+
         // execSync('npm config set @cnext:registry https://npm.careers360.com');
-        execSync('npm i --legacy-peer-deps');
+        execSync('npm i --legacy-peer-deps', { cwd: projectPath });
         spinner.succeed('Dependencies installed successfully!');
+
+
+        // Set up package name in package.json
+        const packageJsonPath = path.join(projectPath, 'package.json');
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath));
+        packageJson.name = projectName;
+        fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
         // ...
 
