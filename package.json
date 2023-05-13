@@ -1,6 +1,6 @@
 {
   "name": "cnext-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "practice purpose",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
     "rimraf": "^5.0.0"
   },
   "bin": {
-    "@cnext-cli": "./generate-app.js"
+    "cnext-cli": "./generate-app.js"
   }
 }
